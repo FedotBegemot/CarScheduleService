@@ -9,7 +9,6 @@ import lombok.*;
 @Table(name = "car")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Car {
 
     @Id
