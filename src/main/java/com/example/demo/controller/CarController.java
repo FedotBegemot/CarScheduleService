@@ -27,17 +27,17 @@ public class CarController {
         return carService.findByVinCode(vinCode);
     }
 
-    @PutMapping ("/update")
-    public ResponseEntity<HttpStatus> update(@RequestBody Car car, BindingResult bindingResult) {
+    @PutMapping
+    public ResponseEntity update(@RequestBody Car car, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().build();
         }
         carService.updateCar(car);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
-    @PostMapping ("/create")
-    public ResponseEntity<HttpStatus> create(@RequestBody Car car, BindingResult bindingResult) {
+    @PostMapping
+    public ResponseEntity create(@RequestBody Car car, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
         }
@@ -45,8 +45,8 @@ public class CarController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{vinCode}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable("vinCode") String vinCode) {
+    @DeleteMapping("/{vinCode}")
+    public ResponseEntity delete(@PathVariable("vinCode") String vinCode) {
         carService.deleteCar(vinCode);
         return ResponseEntity.ok(HttpStatus.OK);
     }
